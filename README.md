@@ -67,8 +67,8 @@ star路径点简化为少数几个关键点。
 
 <p align='center'>
 <div align=half>
-<img src="/pic/reoptimization_3.png"width="45%">
-<img src="/pic/reoptimization_4.png"width="40%">
+<img src="/src/pic/reoptimization_3.png"width="45%">
+<img src="/src/pic/reoptimization_4.png"width="40%">
 </div>
 </p>
 
@@ -78,7 +78,7 @@ star路径点简化为少数几个关键点。
 ### 3.3 无人机运动规划动图演示
 
 <p align='center'>
-<img src="/pic/motion.gif">
+<img src="/src/pic/motion.gif">
 play speed 2X
 </p>
 
@@ -92,5 +92,5 @@ play speed 2X
 
 **！！！完结撒花，感谢我导对我学习运动规划课程的鼓励和大力支持，也感谢深蓝学院提供的高质量课程，让我收获颇丰！课程的结束，意味着新的征程即将开始，希望我能有朝一日独立完成无人船运动规划框架的搭建！！！**
 <p align='center'>
-<img src="/pic/congratulation.png" width="20%">
+<img src="/src/pic/congratulation.png" width="20%">
   <p>
