@@ -35,6 +35,7 @@ sudo make install
 <p align='center'>
 <img src="../pic/FSM.png"width="60%">
 </p>
+
 ### 2.2 运动规划主要流程
 &emsp;&emsp;无人机的运动规划系统主要分为前端可行路径搜索，和后端轨迹生成与优化。在本项目中前端主要采用A*算法，并以对角线距离设计启发式函数。后端则采用满足Minimum Jerk的五次多项式曲线对路径点进行拟合。
 &emsp;&emsp;此外，采用RDP算法对Astar算法搜索出来的路径点进行简化，避免了对过多的路径点插值计算，减少运算规模和时长；
@@ -61,11 +62,13 @@ sudo make install
 
 &emsp;&emsp;通过对比左右两图可见（红点为Astar搜索路径，蓝点为RDP算法简化后的路径），RDP算法将原始A
 star路径点简化为少数几个关键点。
+
 ### 3.2 trajecotry reoptimization前后的可视化比较
+
 <p align='center'>
 <div align=half>
-<img src="../pic/reoptimization_3.png"width="80%">
-<img src="../pic/reoptimization_4.png"width="80%">
+<img src="../pic/reoptimization_3.png"width="40%">
+<img src="../pic/reoptimization_4.png"width="40%">
 </div>
 </p>
 
@@ -73,6 +76,7 @@ star路径点简化为少数几个关键点。
 &emsp;&emsp;某些情况下只需经过少数中间插点，即可将轨迹拉回无碰撞空间（上图）；但某些情况则需经过多次插点，才能保证轨迹无碰撞（下图）
 
 ### 3.3 无人机运动规划动图演示
+
 <p align='center'>
 <img src="../pic/motion.gif">
 play speed 2X
