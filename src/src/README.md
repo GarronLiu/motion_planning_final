@@ -67,7 +67,7 @@ star路径点简化为少数几个关键点。
 
 <p align='center'>
 <div align=half>
-<img src="../pic/reoptimization_3.png"width="40%">
+<img src="../pic/reoptimization_3.png"width="45%">
 <img src="../pic/reoptimization_4.png"width="40%">
 </div>
 </p>
