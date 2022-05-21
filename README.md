@@ -30,7 +30,9 @@ sudo make install
 
 ### 2.1无人机运动规划有限状态机设计
 &emsp;&emsp;无人机的运动规划系统主要分为五个状态: *INIT, WAIT_TARGET, GEN_NEW_TRAJ, EXEC_TRAJ, REPLAN_TRAJ*,意即系统初始化、等待目标点、生成新轨迹、执行轨迹和重规划轨迹。
+
 &emsp;&emsp;生成新轨迹和重规划轨迹的代码流程基本一致，只不过后者是为保障传感器范围受限的无人机飞行安全而设计的定期重规划状态。
+
 &emsp;&emsp;运动规划系统在启动后，仅当收到里程计信息时，状态才会从INIT切换为WAIT_TARGET；当系统接收到目标点后才会进一步切换至GEN_NEW_TRAJ,开始执行主要规划流程。execCallback()是系统内定期（100Hz）执行的回调函数，也是执行运动规划代码的入口所在之处。它主要通过检查某些标志位全局变量，如：has_odom，has_target等来决定系统状态。状态切换的具体细节和逻辑如下面的流程图所示：
 <p align='center'>
 <img src="/src/pic/FSM.png"width="40%">
@@ -38,8 +40,11 @@ sudo make install
 
 ### 2.2 运动规划主要流程
 &emsp;&emsp;无人机的运动规划系统主要分为前端可行路径搜索，和后端轨迹生成与优化。在本项目中前端主要采用A*算法，并以对角线距离设计启发式函数。后端则采用满足Minimum Jerk的五次多项式曲线对路径点进行拟合。
+
 &emsp;&emsp;此外，采用RDP算法对Astar算法搜索出来的路径点进行简化，避免了对过多的路径点插值计算，减少运算规模和时长；
+
 &emsp;&emsp;采用Conservative Advance方法对多项式曲线各分段上各点的安全性进行检测，若某分段不满足要求则在其中插入中间点进行重新拟合，这也基本是本代码后端优化的主要流程。
+
 &emsp;&emsp;trajectory_generator_node.cpp里的traGeneration()函数包含了运动规划的主要流程，其主要在execCallback()中被调用。下面的流程图展示了函数traGeneration()的主要结构和各功能之间的调用关系。
 <p align='center'>
 <img src="/src/pic/trajGeneration.png"width="60%">
@@ -73,6 +78,7 @@ star路径点简化为少数几个关键点。
 </p>
 
 &emsp;&emsp;如图所示，橙色轨迹为未经safeCheck的轨迹，蓝色则为经过重优化的实际执行轨迹。
+
 &emsp;&emsp;某些情况下只需经过少数中间插点，即可将轨迹拉回无碰撞空间（上图）；但某些情况则需经过多次插点，才能保证轨迹无碰撞（下图）
 
 ### 3.3 无人机运动规划动图演示
